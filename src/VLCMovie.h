@@ -13,6 +13,8 @@ class VLCMovie
     ofTexture *frontTexture;
 	ofImage thumbnailImage;
 
+	std::string mDirectSoundDeviceGuid;
+
     libvlc_instance_t *libvlc;
     libvlc_media_t *m;
     libvlc_media_player_t *mp;
@@ -75,7 +77,7 @@ class VLCMovie
     void vlcEvent(const libvlc_event_t *event);
 
 public:
-    VLCMovie(string filename);
+    VLCMovie(string filename, string directSoundDeviceGuid = "");
     ~VLCMovie(void);
     void init();
     void play();

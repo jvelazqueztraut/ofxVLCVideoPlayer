@@ -4,7 +4,11 @@
 #include <vlc/plugins/vlc_input_item.h>
 
 //VLCMovie::VLCMovie(string filename) : filename(filename), frontImage(&image[1]), backImage(&image[0]), isFliped(true), isLooping(true), movieFinished(false), soundBuffer(2048 * 320), isInitialized(false) {
-VLCMovie::VLCMovie(string filename) : filename(filename), frontImage(&image[1]), backImage(&image[0]), isFliped(true), isLooping(true), movieFinished(false), isInitialized(false), isVLCInitialized(false), isThumbnailOK(false), frontTexture(NULL) {
+VLCMovie::VLCMovie(string filename, string directSoundDeviceGuid) 
+	: filename(filename), frontImage(&image[1]), backImage(&image[0]), 
+	isFliped(true), isLooping(true), movieFinished(false), isInitialized(false), 
+	isVLCInitialized(false), isThumbnailOK(false), frontTexture(NULL),
+	mDirectSoundDeviceGuid(directSoundDeviceGuid){
     cout << "VLCMovie constructor" << endl;
 }
 
@@ -29,12 +33,15 @@ void VLCMovie::init() {
 }
 
 void VLCMovie::initializeVLC() {
-    char const *vlc_argv[] = {
-        "--no-osd"
-    };
-
-    int vlc_argc = sizeof(vlc_argv) / sizeof(*vlc_argv);
-    libvlc = libvlc_new(vlc_argc, vlc_argv);
+    std::vector<const char *> vlc_argv;
+	vlc_argv.push_back("--no-osd");
+    
+	if (!mDirectSoundDeviceGuid.empty() && mDirectSoundDeviceGuid != "") {
+		stringstream dad;
+		dad << "--directx-audio-device=" << mDirectSoundDeviceGuid;
+		vlc_argv.push_back(strdup(dad.str().c_str())); // XXX memory leak :/
+	}
+    libvlc = libvlc_new(vlc_argv.size(), &vlc_argv[0]);
     //libvlc = libvlc_new(0, NULL);
     if (!libvlc) {
         const char *error = libvlc_errmsg();
@@ -56,8 +63,8 @@ void VLCMovie::initializeVLC() {
     // *** if you want to change how to output audio, please change setting below
     // *** you can get appreciate audio output name by libvlc_audio_output_list_get (code wrote and commented-out 10 lines above)
     // libvlc_audio_output_set(mp, "adummy"); // audio output to buffer (need to setup callbacks with libvlc_audio_set_callbacks)
-    libvc_audio_output_set(mp, "waveout"); // audio output to MME Wave Out
-    // libvlc_audio_output_set(mp, "aout_directx"); // audio output with Direct X
+    //libvlc_audio_output_set(mp, "waveout"); // audio output to MME Wave Out
+    libvlc_audio_output_set(mp, "aout_directx"); // audio output with Direct X
     
 
     // TODO: use libvlc_video_set_format_callbacks instead of libvlc_video_set_format
