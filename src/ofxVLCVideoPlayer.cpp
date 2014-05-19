@@ -12,9 +12,9 @@ ofxVLCVideoPlayer::~ofxVLCVideoPlayer(void)
     //closeMovie();
 }
 
-bool ofxVLCVideoPlayer::loadMovie(string name) {
+bool ofxVLCVideoPlayer::loadMovie(string name, string directSoundAudioGuid) {
     closeMovie();
-    vlcMovieInstance = shared_ptr<VLCMovie>(new VLCMovie(ofToDataPath(name)));
+    vlcMovieInstance = shared_ptr<VLCMovie>(new VLCMovie(ofToDataPath(name), directSoundAudioGuid));
     vlcMovieInstance->init();
     bool result = vlcMovieInstance->getIsInitialized();
     if (!result) vlcMovieInstance.reset();

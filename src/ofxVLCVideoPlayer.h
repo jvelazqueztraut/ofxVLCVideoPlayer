@@ -11,7 +11,7 @@ class ofxVLCVideoPlayer
 public:
     ofxVLCVideoPlayer(void);
     ~ofxVLCVideoPlayer(void);
-    bool loadMovie(string name);
+    bool loadMovie(string name, string directSoundAudioGuid = "");
     void closeMovie();
     void update();
     ofTexture &getTextureReference();
