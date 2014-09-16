@@ -90,7 +90,7 @@ void VLCMovie::initializeVLC() {
     videoHeight = libvlc_video_get_height(mp);
     video_length_ms = libvlc_media_get_duration(m);
     cout << video_length_ms << endl;
-
+	/*
 	cout << "Video: (" << videoWidth << ", " << videoHeight << ")" << endl;
 
     libvlc_video_set_callbacks(mp, lockForThumbnailStatic, unlockForThumbnailStatic, displayForThumbnailStatic, this);
@@ -107,7 +107,7 @@ void VLCMovie::initializeVLC() {
 	thumbnailImage.reloadTexture();
 
 	cout << "Created Thumbnail" << endl;
-	cout << "Video:length " << video_length_ms << "(ms)" << endl;
+	cout << "Video:length " << video_length_ms << "(ms)" << endl;*/
 
     libvlc_audio_output_set(mp, "aout_directx");
     libvlc_video_set_callbacks(mp, lockStatic, unlockStatic, displayStatic, this);
