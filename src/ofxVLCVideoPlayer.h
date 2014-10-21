@@ -38,5 +38,6 @@ public:
     int getTotalNumFrames();
     void setVolume(int volume);
     void toggleMute();
+	bool isTextureValid() { return vlcMovieInstance->hasData(); }
 };
 

@@ -8,7 +8,7 @@ VLCMovie::VLCMovie(string filename, string directSoundDeviceGuid)
 	: filename(filename), frontImage(&image[1]), backImage(&image[0]), 
 	isFliped(true), isLooping(true), movieFinished(false), isInitialized(false), 
 	isVLCInitialized(false), isThumbnailOK(false), frontTexture(NULL),
-	mDirectSoundDeviceGuid(directSoundDeviceGuid){
+	mDirectSoundDeviceGuid(directSoundDeviceGuid), mHasData(false){
     cout << "VLCMovie constructor" << endl;
 }
 
@@ -270,6 +270,7 @@ void VLCMovie::display(void *id) {
     backImage = frontImage;
     frontImage = tmp;
     isFliped = true;
+	mHasData = true;
     imageFlipMutex.unlock();
 }
 

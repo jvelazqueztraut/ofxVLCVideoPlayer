@@ -32,6 +32,7 @@ class VLCMovie
 	bool isThumbnailOK;
     bool isFliped;
     bool isLooping;
+	bool mHasData;
 
     bool movieFinished;
 
@@ -104,6 +105,7 @@ public:
     int getCurrentFrame();
     void setVolume(int volume);
     void toggleMute();
+	bool hasData() { return mHasData; }
 
     //ofSoundStream soundStream;
     //SoundBuffer soundBuffer;
