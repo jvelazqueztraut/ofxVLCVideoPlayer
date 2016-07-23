@@ -94,6 +94,7 @@ public:
     int getTotalNumFrames();
     void updateTexture();
     ofTexture &getTexture();
+    ofPixels &getPixels();
 	ofImage &getThumbnailImage();
     bool isMovieFinished();
     bool isPlaying();

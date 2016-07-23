@@ -310,6 +310,9 @@ ofTexture &VLCMovie::getTexture() {
     return *frontTexture;
 }
 
+ofPixels &VLCMovie::getPixels() {
+    return (*frontImage).getPixelsRef();
+}
 ////--------------------------------------------------------------
 //void VLCMovie::audioOut(float *input, int bufferSize, int nChannels) {
 //    //cout << "bufSize=" << bufferSize << " channel=" << nChannels << endl;

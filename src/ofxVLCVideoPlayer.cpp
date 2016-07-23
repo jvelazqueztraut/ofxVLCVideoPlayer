@@ -43,6 +43,14 @@ ofTexture &ofxVLCVideoPlayer::getTextureReference() {
     }
 }
 
+ofPixels &ofxVLCVideoPlayer::getPixelsRef() {
+    if (vlcMovieInstance) {
+        return vlcMovieInstance->getPixels();
+    } else {
+        return dummyImage.getPixelsRef();
+    }
+}
+
 void ofxVLCVideoPlayer::draw(float x, float y, float w, float h) {
     if (vlcMovieInstance) {
         vlcMovieInstance->getTexture().draw(x, y, 0, w, h);

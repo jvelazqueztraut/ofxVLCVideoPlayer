@@ -15,6 +15,7 @@ public:
     void closeMovie();
     void update();
     ofTexture &getTextureReference();
+    ofPixels &getPixelsRef();
 	ofImage &getThumbnailImage();
     void draw(float x, float y, float w, float h);
     void draw(float x, float y);
