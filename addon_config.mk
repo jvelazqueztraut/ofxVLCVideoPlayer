@@ -28,7 +28,6 @@ common:
 	# but if the addon or addon libraries need special search paths they can be
 	# specified here separated by spaces or one per line using +=
 	ADDON_INCLUDES = src/
-	ADDON_INCLUDES += libs/libvlc/include
 	
 	# any special flag that should be passed to the compiler when using this
 	# addon
@@ -58,9 +57,3 @@ common:
 	# when parsing the file system looking for libraries exclude this for all or
 	# a specific platform
 	# ADDON_LIBS_EXCLUDE =
-	
-vs:
-	# binary libraries, these will be usually parsed from the file system but some 
-	# libraries need to passed to the linker in a specific order 
-	ADDON_LIBS = libs/libvlc/lib/msvc/libvlc.lib
-	ADDON_LIBS += libs/libvlc/lib/msvc/libvlccore.lib
