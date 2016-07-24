@@ -2,19 +2,23 @@
 
 using std::tr1::shared_ptr;
 
-ofxVLCVideoPlayer::ofxVLCVideoPlayer(void)
-{
+ofxVLCVideoPlayer::ofxVLCVideoPlayer(void){
+	bUseTexture=true;
 }
 
 
-ofxVLCVideoPlayer::~ofxVLCVideoPlayer(void)
-{
+ofxVLCVideoPlayer::~ofxVLCVideoPlayer(void){
     //closeMovie();
+}
+
+void ofxVLCVideoPlayer::setUseTexture(bool bUse) {
+	bUseTexture=bUse;
 }
 
 bool ofxVLCVideoPlayer::loadMovie(string name, string directSoundAudioGuid) {
     closeMovie();
     vlcMovieInstance = shared_ptr<VLCMovie>(new VLCMovie(ofToDataPath(name), directSoundAudioGuid));
+	vlcMovieInstance->bUseTexture=bUseTexture;
     vlcMovieInstance->init();
     bool result = vlcMovieInstance->getIsInitialized();
     if (!result) vlcMovieInstance.reset();

@@ -110,6 +110,7 @@ public:
 	bool hasData() { return mHasData; }
 
 	bool bIsFrameNew;
+	bool bUseTexture;
 
     //ofSoundStream soundStream;
     //SoundBuffer soundBuffer;

@@ -9,12 +9,12 @@ VLCMovie::VLCMovie(string filename, string directSoundDeviceGuid)
 	isFliped(true), isLooping(true), movieFinished(false), isInitialized(false), 
 	isVLCInitialized(false), isThumbnailOK(false), frontTexture(NULL),
 	mDirectSoundDeviceGuid(directSoundDeviceGuid), mHasData(false){
-    cout << "VLCMovie constructor" << endl;
+		bIsFrameNew=false;
+		bUseTexture=true;
 }
 
 VLCMovie::~VLCMovie(void)
 {
-    cout << "VLCMovie destructor" << endl;
 	cleanupVLC();
 }
 
@@ -25,6 +25,7 @@ void VLCMovie::init() {
     if (!isVLCInitialized) return;
 
     for (int i = 0; i < 2; i++) {
+		image[i].setUseTexture(bUseTexture);
         image[i].allocate(videoWidth, videoHeight, OF_IMAGE_COLOR_ALPHA);
     }
 

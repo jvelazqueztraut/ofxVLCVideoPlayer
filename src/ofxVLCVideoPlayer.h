@@ -15,6 +15,7 @@ public:
     void closeMovie();
     void update();
 	bool isFrameNew();
+	void setUseTexture(bool bUse);
     ofTexture &getTextureReference();
     ofPixels &getPixelsRef();
 	ofImage &getThumbnailImage();
@@ -43,5 +44,7 @@ public:
     void setVolume(int volume);
     void toggleMute();
 	bool isTextureValid() { return vlcMovieInstance->hasData(); }
+
+	bool bUseTexture;
 };
 
