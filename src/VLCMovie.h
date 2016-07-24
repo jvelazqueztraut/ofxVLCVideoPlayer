@@ -103,6 +103,7 @@ public:
 	libvlc_time_t getTimeMillis();
     void setTimeMillis(libvlc_time_t ms);
     void setFrame(int frame);
+	void nextFrame();
     int getCurrentFrame();
     void setVolume(int volume);
     void toggleMute();

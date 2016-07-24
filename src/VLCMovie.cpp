@@ -367,6 +367,10 @@ void VLCMovie::setFrame(int frame) {
     setTimeMillis(ms);
 }
 
+void VLCMovie::nextFrame() {
+    libvlc_media_player_next_frame(mp);
+}
+
 int VLCMovie::getCurrentFrame() {
     libvlc_time_t ms = getTimeMillis();
     int frame = fps * ms / 1000;

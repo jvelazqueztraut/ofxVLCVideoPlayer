@@ -178,6 +178,19 @@ void ofxVLCVideoPlayer::setFrame(int frame) {
 	}
 }
 
+void ofxVLCVideoPlayer::firstFrame() {
+	if(vlcMovieInstance){
+		return vlcMovieInstance->setFrame(0);
+	}
+}
+
+void ofxVLCVideoPlayer::nextFrame() {
+    if (vlcMovieInstance) {
+        //return vlcMovieInstance->setFrame(vlcMovieInstance->getCurrentFrame()+1);
+		return vlcMovieInstance->nextFrame();
+    }
+}
+
 int ofxVLCVideoPlayer::getCurrentFrame() {
     if (vlcMovieInstance) {
         return vlcMovieInstance->getCurrentFrame();

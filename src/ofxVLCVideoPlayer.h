@@ -35,6 +35,8 @@ public:
     float getFPS();
     float getDuration();
     void setFrame(int frame);
+	void firstFrame();
+	void nextFrame();
     int getCurrentFrame();
     int getTotalNumFrames();
     void setVolume(int volume);
