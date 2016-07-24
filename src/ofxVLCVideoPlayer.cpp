@@ -76,9 +76,12 @@ void ofxVLCVideoPlayer::play() {
     }
 }
 
-void ofxVLCVideoPlayer::pause() {
+void ofxVLCVideoPlayer::setPaused(bool pause) {
     if (vlcMovieInstance) {
-        vlcMovieInstance->pause();
+		if(pause)
+			vlcMovieInstance->pause();
+		else
+			vlcMovieInstance->play();
     }
 }
 

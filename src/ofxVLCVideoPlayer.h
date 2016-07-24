@@ -21,7 +21,7 @@ public:
     void draw(float x, float y, float w, float h);
     void draw(float x, float y);
     void play();
-    void pause();
+    void setPaused(bool pause);
     void stop();
     bool getIsMovieDone();
     void setPosition(float pct);
