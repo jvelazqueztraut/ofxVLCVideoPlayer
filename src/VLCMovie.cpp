@@ -25,7 +25,7 @@ void VLCMovie::init() {
     if (!isVLCInitialized) return;
 
     for (int i = 0; i < 2; i++) {
-        image[i].allocate(videoWidth, videoHeight, OF_IMAGE_COLOR);
+        image[i].allocate(videoWidth, videoHeight, OF_IMAGE_COLOR_ALPHA);
     }
 
 	frontTexture = &frontImage->getTextureReference();
@@ -111,7 +111,7 @@ void VLCMovie::initializeVLC() {
 
     libvlc_audio_output_set(mp, "aout_directx");
     libvlc_video_set_callbacks(mp, lockStatic, unlockStatic, displayStatic, this);
-    libvlc_video_set_format(mp, "RV24", videoWidth, videoHeight, videoWidth * 3);
+    libvlc_video_set_format(mp, "RGBA", videoWidth, videoHeight, videoWidth * 4);
     
     //libvlc_audio_set_callbacks(mp, playStatic, pauseStatic, resumeStatic, flushStatic, drainStatic, this);
     //libvlc_audio_set_format_callbacks(mp, setupStatic, cleanupStatic);
