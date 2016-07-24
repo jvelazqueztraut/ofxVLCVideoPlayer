@@ -109,6 +109,8 @@ public:
     void toggleMute();
 	bool hasData() { return mHasData; }
 
+	bool bIsFrameNew;
+
     //ofSoundStream soundStream;
     //SoundBuffer soundBuffer;
     //virtual void audioOut(float *output, int bufferSize, int channels);

@@ -295,6 +295,7 @@ unsigned int VLCMovie::getImageHeight() {
 }
 
 void VLCMovie::updateTexture() {
+	bIsFrameNew=false;
     if (!isFliped) return;
     imageFlipMutex.lock(10000);
     frontImage->update();
@@ -303,7 +304,7 @@ void VLCMovie::updateTexture() {
     imageFlipMutex.unlock();
     //cout << libvlc_video_get_width(mp) << endl;
     //cout << libvlc_video_get_height(mp) << endl;
-
+	bIsFrameNew=true;
 }
 
 ofTexture &VLCMovie::getTexture() {

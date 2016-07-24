@@ -33,7 +33,14 @@ void ofxVLCVideoPlayer::update() {
     if (vlcMovieInstance) {
         vlcMovieInstance->updateTexture();
     }
-} 
+}
+
+bool ofxVLCVideoPlayer::isFrameNew() {
+    if (vlcMovieInstance) {
+        return vlcMovieInstance->bIsFrameNew;
+    }
+	return false;
+}
 
 ofTexture &ofxVLCVideoPlayer::getTextureReference() {
     if (vlcMovieInstance) {
@@ -95,10 +102,21 @@ void ofxVLCVideoPlayer::setPosition(float pct) {
     }
 }
 
-void ofxVLCVideoPlayer::setLoop(bool loop) {
-    if (vlcMovieInstance) {
-        vlcMovieInstance->setLoop(loop);
-    }
+void ofxVLCVideoPlayer::setLoopState(ofLoopType state) {
+	if (vlcMovieInstance) {
+		switch (state) {
+			case OF_LOOP_NORMAL:
+				vlcMovieInstance->setLoop(true);
+				break;
+			case OF_LOOP_PALINDROME:
+				ofLog(OF_LOG_WARNING)<<"Loop state PALINDROME not implemented."<<endl;
+				break;
+			case OF_LOOP_NONE:
+			default:
+				vlcMovieInstance->setLoop(false);
+				break;
+		}
+	}
 }
 
 float ofxVLCVideoPlayer::getHeight() {

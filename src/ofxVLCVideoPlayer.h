@@ -14,6 +14,7 @@ public:
     bool loadMovie(string name, string directSoundAudioGuid = "");
     void closeMovie();
     void update();
+	bool isFrameNew();
     ofTexture &getTextureReference();
     ofPixels &getPixelsRef();
 	ofImage &getThumbnailImage();
@@ -24,7 +25,7 @@ public:
     void stop();
     bool getIsMovieDone();
     void setPosition(float pct);
-    void setLoop(bool loop);
+    void setLoopState(ofLoopType state);
     float getHeight();
     float getWidth();
     bool isPlaying();
