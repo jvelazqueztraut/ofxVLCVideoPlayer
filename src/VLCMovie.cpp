@@ -46,7 +46,7 @@ void VLCMovie::initializeVLC() {
     //libvlc = libvlc_new(0, NULL);
     if (!libvlc) {
         const char *error = libvlc_errmsg();
-        cout << error << endl;
+        ofLogError("VLCMovie") << error;
         return;
     }
 
@@ -90,7 +90,7 @@ void VLCMovie::initializeVLC() {
     videoWidth = libvlc_video_get_width(mp);
     videoHeight = libvlc_video_get_height(mp);
     video_length_ms = libvlc_media_get_duration(m);
-    cout << video_length_ms << endl;
+    ofLogVerbose("VLCMovie") << "Video lenght in ms: " << video_length_ms;
 	/*
 	cout << "Video: (" << videoWidth << ", " << videoHeight << ")" << endl;
 
@@ -127,7 +127,7 @@ void VLCMovie::initializeVLC() {
         if (es) {
             if (es->video.i_frame_rate) {
                 fps = (float)es->video.i_frame_rate / es->video.i_frame_rate_base;
-                cout << "fps: " << fps << endl;
+                ofLogVerbose("VLCMovie") << "Video FPS: " << fps;
             }
             //cout << es->video.i_width << endl;
         }
